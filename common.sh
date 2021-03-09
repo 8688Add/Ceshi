@@ -64,8 +64,6 @@ Diy_lienol() {
 cp -Rf build/common/LIENOL/* "${PATH1}"
 rm -rf package/diy/luci-app-adguardhome
 rm -rf package/lean/{luci-app-netdata,luci-theme-argon,k3screenctrl}
-sed -i '/CONFIG_PACKAGE_luci-app-passwall=y/d' ${Home}/.config > /dev/null 2>&1
-echo -e "\nCONFIG_PACKAGE_luci-app-passwall=y" >> ${Home}/.config
 
 git clone https://github.com/fw876/helloworld package/danshui/luci-app-ssr-plus
 git clone https://github.com/xiaorouji/openwrt-passwall package/danshui/luci-app-passwall
@@ -83,6 +81,8 @@ Diy_lienol2() {
 echo
 rm -rf feeds/packages/net/adguardhome
 sed -i '$i '"chmod -R 777 /etc/init.d/AdGuardHome /usr/share/AdGuardHome/addhost.sh"'' ./package/default-settings/files/zzz-default-settings
+sed -i '/CONFIG_PACKAGE_luci-app-passwall=y/d' ${Home}/.config > /dev/null 2>&1
+echo -e "\nCONFIG_PACKAGE_luci-app-passwall=y" >> ${Home}/.config
 }
 
 ################################################################################################################
