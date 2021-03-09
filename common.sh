@@ -81,9 +81,6 @@ Diy_lienol2() {
 echo
 rm -rf feeds/packages/net/adguardhome
 sed -i '$i '"chmod -R 777 /etc/init.d/AdGuardHome /usr/share/AdGuardHome/addhost.sh"'' ./package/default-settings/files/zzz-default-settings
-if [[ `find . -name ".config" -exec grep -rs "CONFIG_PACKAGE_luci-app-passwall=y" {} \;` -eq '0' ]]; then
-	echo -e "\nCONFIG_PACKAGE_luci-app-passwall=y" >> .config
-fi
 }
 
 ################################################################################################################
