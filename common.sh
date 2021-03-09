@@ -5,7 +5,7 @@
 
 # 全脚本源码通用diy.sh文件
 Diy_all() {
-git clone -b $REPO_BRANCH --single-branch https://github.com/281677160/openwrt-package package
+git clone -b $REPO_BRANCH --single-branch https://github.com/281677160/openwrt-package package/danshui
 if [[ ${REGULAR_UPDATE} == "true" ]]; then
 git clone https://github.com/281677160/luci-app-autoupdate package/luci-app-autoupdate
 mv "${PATH1}"/{AutoUpdate.sh,AutoBuild_Tools.sh} package/base-files/files/bin
