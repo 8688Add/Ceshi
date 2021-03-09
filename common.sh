@@ -33,8 +33,8 @@ rm -rf package/lean/v2ray-plugin
 rm -rf package/lean/{luci-app-netdata,luci-theme-argon,k3screenctrl}
 sed -i 's/iptables -t nat/# iptables -t nat/g' package/lean/default-settings/files/zzz-default-settings
 if [[ "${Modelfile}" == "Lede_x86_64" ]]; then
-sed -i '/IMAGES_GZIP/d' "${PATH1}/${CONFIG_FILE}" > /dev/null 2>&1
-echo -e "\nCONFIG_TARGET_IMAGES_GZIP=y" >> "${PATH1}/${CONFIG_FILE}"
+	sed -i '/IMAGES_GZIP/d' "${PATH1}/${CONFIG_FILE}" > /dev/null 2>&1
+	echo -e "\nCONFIG_TARGET_IMAGES_GZIP=y" >> "${PATH1}/${CONFIG_FILE}"
 fi
 
 git clone https://github.com/fw876/helloworld package/danshui/luci-app-ssr-plus
@@ -81,8 +81,9 @@ Diy_lienol2() {
 echo
 rm -rf feeds/packages/net/adguardhome
 sed -i '$i '"chmod -R 777 /etc/init.d/AdGuardHome /usr/share/AdGuardHome/addhost.sh"'' ./package/default-settings/files/zzz-default-settings
-sed -i '/CONFIG_PACKAGE_luci-app-passwall=y/d' ${Home}/.config > /dev/null 2>&1
-echo -e "\nCONFIG_PACKAGE_luci-app-passwall=y" >> ${Home}/.config
+if [[ `grep -c "CONFIG_PACKAGE_luci-app-passwall=y" ${Home}/.config` -eq '0' ]]; then
+	echo -e "\nCONFIG_TARGET_IMAGES_GZIP=y" >> "${Home}/.config"
+fi
 }
 
 ################################################################################################################
