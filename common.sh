@@ -82,7 +82,7 @@ echo
 rm -rf feeds/packages/net/adguardhome
 sed -i '$i '"chmod -R 777 /etc/init.d/AdGuardHome /usr/share/AdGuardHome/addhost.sh"'' ./package/default-settings/files/zzz-default-settings
 if [[ `grep -c "CONFIG_PACKAGE_luci-app-passwall=y" ${Home}/.config` -eq '0' ]]; then
-	echo -e "\nCONFIG_TARGET_IMAGES_GZIP=y" >> "${Home}/.config"
+	echo -e "\nCONFIG_PACKAGE_luci-app-passwall=y" >> "${Home}/.config"
 fi
 }
 
@@ -113,6 +113,7 @@ git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app
 Diy_immortalwrt2() {
 echo
 sed -i '$i '"chmod -R 777 /etc/init.d/AdGuardHome /usr/share/AdGuardHome/addhost.sh"'' ./package/lean/default-settings/files/zzz-default-settings
+curl -fsSL https://raw.githubusercontent.com/281677160/AdGuardHome/main/luci-app-adguardhome/root/etc/config/AdGuardHome.yaml > "${Home}"/package/ctcgfw/luci-app-adguardhome/root/etc/AdGuardHome.yaml
 }
 
 ################################################################################################################
