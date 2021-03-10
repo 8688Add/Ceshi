@@ -151,6 +151,12 @@ else
 	TARGET_ADG="$(egrep -o "CONFIG_TARGET.*DEVICE.*=y" .config | sed -r 's/.*DEVICE_(.*)=y/\1/')"
 fi
 
+grep -i CONFIG_PACKAGE_luci-app .config | grep  -v \# > apples.txt
+sed -i "s/=y//g" apples.txt
+sed -i "s/CONFIG_PACKAGE_//g" apples.txt
+
+
+
 if [[ `grep -c "CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y" ${Home}/.config` -eq '1' ]]; then
 	sed -i 's/CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray is not set/g' ${Home}/.config
 	echo -e "\nCONFIG_PACKAGE_luci-app-bypass=y" >> ${Home}/.config
@@ -307,4 +313,5 @@ echo ""
 echo ""
 echo " 系统空间      类型   总数  已用  可用 使用率"
 cd ../ && df -hT $PWD && cd openwrt
+cat [-n] apples.txt
 }
