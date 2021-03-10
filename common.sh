@@ -353,7 +353,7 @@ if [[ ${SSHYC} == "true" ]]; then
 	echo " SSH远程连接临时开关: 开启"
 fi
 if [[ ${REGULAR_UPDATE} == "true" ]]; then
-	echo ""
+	echo
 	echo " 把定时自动更新插件编译进固件: 开启"
 	echo " 插件版本: ${AutoUpdate_Version}"
 	echo " 固件名称: ${Firmware_mz}"
@@ -364,25 +364,25 @@ if [[ ${REGULAR_UPDATE} == "true" ]]; then
 	echo " 《请把“REPO_TOKEN”密匙设置好,没设置好密匙不能发布就生成不了云端地址》"
 	echo " 《x86-64、phicomm_k2p、phicomm-k3、newifi-d2已自动适配固件名字跟后缀，无需自行设置》"
 	echo " 《如有其他机子可以用定时更新固件的话，请告诉我，我把固件名字跟后缀适配了》"
-	echo ""
+	echo
 else
 	echo " 把定时自动更新插件编译进固件: 关闭"
-	echo ""
+	echo
 fi
 echo " * 您当前使用的是【${Modelfile}】文件夹编译【${TARGET_PROFILE}】固件,请核对以上信息是否正确！*"
-echo ""
+echo
 echo " 系统空间      类型   总数  已用  可用 使用率"
 cd ../ && df -hT $PWD && cd openwrt
-
+echo
 if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
-	echo ""
+	echo
 	[ -s CHONGTU ] && cat CHONGTU
 fi
 if [ -n "$(ls -A "${Home}/Plug-in" 2>/dev/null)" ]; then
-	echo ""
+	echo
 	echo "	   已选插件列表"
 	[ -s Plug-in ] && cat -n Plug-in
-	echo ""
+	echo
 fi
 rm -rf {CHONGTU,Plug-in,Chajianlibiao}
 }
