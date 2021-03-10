@@ -151,9 +151,9 @@ else
 	TARGET_ADG="$(egrep -o "CONFIG_TARGET.*DEVICE.*=y" .config | sed -r 's/.*DEVICE_(.*)=y/\1/')"
 fi
 
-grep -i CONFIG_PACKAGE_luci-app .config | grep  -v \# > apples.txt
-sed -i "s/=y//g" apples.txt
-sed -i "s/CONFIG_PACKAGE_//g" apples.txt
+grep -i CONFIG_PACKAGE_luci-app .config | grep  -v \# > apples
+sed -i "s/=y//g" apples
+sed -i "s/CONFIG_PACKAGE_//g" apples
 
 
 
@@ -316,5 +316,5 @@ cd ../ && df -hT $PWD && cd openwrt
 echo ""
 echo ""
 echo "插件列表"
-cat ~/. apples.txt -n 
+cat ~/. apples -n 
 }
