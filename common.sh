@@ -140,6 +140,59 @@ fi
 }
 
 
+################################################################################################################
+# 判断脚插件冲突
+
+Diy_chajian() {
+if [[ `grep -c "CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y" ${Home}/.config` -eq '1' ]]; then
+	sed -i 's/CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray is not set/g' ${Home}/.config
+	echo -e "\nCONFIG_PACKAGE_luci-app-bypass=y" >> ${Home}/.config
+	echo -e "检测到你选择luci-app-bypass勾选了V2ray跟Xary冲突，已删除V2ray"
+fi
+if [[ `grep -c "CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y" ${Home}/.config` -eq '1' ]]; then
+	sed -i 's/CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray is not set/g' ${Home}/.config
+	echo -e "检测到你选择luci-app-ssr-plus勾选了V2ray跟Xary冲突，已删除V2ray"
+fi
+if [[ `grep -c "CONFIG_PACKAGE_luci-app-samba=y" ${Home}/.config` -eq '1' ]]; then
+	if [[ `grep -c "CONFIG_PACKAGE_luci-app-samba4=y" ${Home}/.config` -eq '1' ]]; then
+		sed -i 's/CONFIG_PACKAGE_autosamba=y/# CONFIG_PACKAGE_autosamba is not set/g' ${Home}/.config
+		sed -i 's/CONFIG_PACKAGE_luci-app-samba=y/# CONFIG_PACKAGE_luci-app-samba is not set/g' ${Home}/.config
+		sed -i 's/CONFIG_PACKAGE_luci-i18n-samba-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-samba-zh-cn is not set/g' ${Home}/.config
+		sed -i 's/CONFIG_PACKAGE_samba36-server=y/# CONFIG_PACKAGE_samba36-server is not set/g' ${Home}/.config
+		echo -e "检测到你同时选择luci-app-samba和luci-app-samba4，插件有冲突，已删除luci-app-samba"
+	fi
+	
+fi
+
+if [[ `grep -c "CONFIG_PACKAGE_luci-app-docker=y" ${Home}/.config` -eq '1' ]]; then
+	if [[ `grep -c "CONFIG_PACKAGE_luci-app-dockerman=y" ${Home}/.config` -eq '1' ]]; then
+		sed -i 's/CONFIG_PACKAGE_luci-app-dockerman=y/# CONFIG_PACKAGE_luci-app-dockerman is not set/g' ${Home}/.config
+		sed -i 's/CONFIG_PACKAGE_luci-lib-docker=y/# CONFIG_PACKAGE_luci-lib-docker is not set/g' ${Home}/.config
+		sed -i 's/CONFIG_PACKAGE_luci-i18n-dockerman-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-dockerman-zh-cn is not set/g' ${Home}/.config
+		echo -e "检测到你同时选择luci-app-samba和luci-app-samba4，插件有冲突，已删除luci-app-samba"
+	fi
+	
+fi
+
+if [[ `grep -c "CONFIG_PACKAGE_luci-app-autopoweroff=y" ${Home}/.config` -eq '1' ]]; then
+	if [[ `grep -c "CONFIG_PACKAGE_luci-app-autoreboot=y" ${Home}/.config` -eq '1' ]]; then
+		sed -i 's/CONFIG_PACKAGE_luci-app-autoreboot=y/# CONFIG_PACKAGE_luci-app-autoreboot is not set/g' ${Home}/.config
+		sed -i 's/CONFIG_PACKAGE_luci-i18n-autoreboot-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-autoreboot-zh-cn=y is not set/g' ${Home}/.config
+		echo -e "检测到你同时选择luci-app-autopoweroff和luci-app-autoreboot，插件有冲突，已删除luci-app-autoreboot"
+	fi
+	
+fi
+
+if [[ `grep -c "CONFIG_PACKAGE_luci-app-advanced=y" ${Home}/.config` -eq '1' ]]; then
+	if [[ `grep -c "CONFIG_PACKAGE_luci-app-filebrowser=y" ${Home}/.config` -eq '1' ]]; then
+		sed -i 's/CONFIG_PACKAGE_luci-app-filebrowser=y/# CONFIG_PACKAGE_luci-app-filebrowser is not set/g' ${Home}/.config
+		sed -i 's/CONFIG_PACKAGE_luci-i18n-filebrowser-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-filebrowser-zh-cn=y is not set/g' ${Home}/.config
+		echo -e "检测到你同时选择luci-app-advanced和luci-app-filebrowser，插件有冲突，已删除luci-app-filebrowser"
+	fi
+	
+fi
+}
+
 
 ################################################################################################################
 # 判断是否选择AdGuard Home是就指定机型给内核，判断是否选择v2ray，有就去掉
@@ -154,24 +207,6 @@ fi
 grep -i CONFIG_PACKAGE_luci-app .config | grep  -v \# > apples
 sed -i "s/=y//g" apples
 sed -i "s/CONFIG_PACKAGE_//g" apples
-
-
-
-if [[ `grep -c "CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y" ${Home}/.config` -eq '1' ]]; then
-	sed -i 's/CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray is not set/g' ${Home}/.config
-	echo -e "\nCONFIG_PACKAGE_luci-app-bypass=y" >> ${Home}/.config
-	echo -e "检测到你选择luci-app-bypass勾选了V2ray跟Xary冲突，已删除V2ray"
-fi
-if [[ `grep -c "CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y" ${Home}/.config` -eq '1' ]]; then
-	sed -i 's/CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray is not set/g' ${Home}/.config
-	echo -e "检测到你选择luci-app-ssr-plus勾选了V2ray跟Xary冲突，已删除V2ray"
-fi
-if [[ `grep -c "CONFIG_PACKAGE_luci-app-samba=y" ${Home}/.config` -eq '1' ]]; then
-	if [[ `grep -c "CONFIG_PACKAGE_luci-app-samba4=y" ${Home}/.config` -eq '1' ]]; then
-	echo -e "检测到你同时选择luci-app-samba和luci-app-samba4，插件有冲突，请二选一再编译"
-	fi
-	
-fi
 
 case "${REPO_URL}" in
 "${LEDE}")
