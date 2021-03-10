@@ -144,7 +144,7 @@ fi
 # 判断脚插件冲突
 
 Diy_chajian() {
-echo "			  插件冲突信息" > ${Home}/CHONGTU
+echo "				插件冲突信息" > ${Home}/CHONGTU
 
 if [[ `grep -c "CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y" ${Home}/.config` -eq '1' ]]; then
 	sed -i 's/CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray is not set/g' ${Home}/.config
@@ -202,7 +202,7 @@ fi
 
 if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
 echo "" >>CHONGTU
-echo "	  以上操作如非您所需，请关闭此次编译，重新开始编译，避开冲突重新选择插件" >>CHONGTU
+echo "	以上操作如非您所需，请关闭此次编译，重新开始编译，避开冲突重新选择插件" >>CHONGTU
 echo "" >>CHONGTU
 else
 rm -rf {CHONGTU,Chajianlibiao}
