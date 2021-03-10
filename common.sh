@@ -373,7 +373,7 @@ echo ""
 if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
 	echo ""
 	echo ""
-	[ -s CHONGTU ] && cat CHONGTU1
+	[ -s CHONGTU ] && cat CHONGTU
 	echo ""
 fi
 if [ -n "$(ls -A "${Home}/Plug-in" 2>/dev/null)" ]; then
