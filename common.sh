@@ -313,5 +313,8 @@ echo ""
 echo ""
 echo " 系统空间      类型   总数  已用  可用 使用率"
 cd ../ && df -hT $PWD && cd openwrt
-cat [-n] apples.txt
+echo ""
+echo ""
+echo "插件列表"
+cat ~/. apples.txt -n 
 }
