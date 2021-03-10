@@ -371,20 +371,18 @@ else
 fi
 echo " * 您当前使用的是【${Modelfile}】文件夹编译【${TARGET_PROFILE}】固件,请核对以上信息是否正确！*"
 echo ""
+echo " 系统空间      类型   总数  已用  可用 使用率"
+cd ../ && df -hT $PWD && cd openwrt
+
 if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
 	echo ""
-	echo ""
 	[ -s CHONGTU ] && cat CHONGTU
-	echo ""
 fi
 if [ -n "$(ls -A "${Home}/Plug-in" 2>/dev/null)" ]; then
 	echo ""
-	echo "	已选插件列表"
+	echo "	   已选插件列表"
 	[ -s Plug-in ] && cat -n Plug-in
 	echo ""
 fi
-echo ""
-echo " 系统空间      类型   总数  已用  可用 使用率"
-cd ../ && df -hT $PWD && cd openwrt
 rm -rf {CHONGTU,Plug-in,Chajianlibiao}
 }
