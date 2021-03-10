@@ -316,5 +316,5 @@ cd ../ && df -hT $PWD && cd openwrt
 echo ""
 echo ""
 echo "插件列表"
-cat ~/. apples -n 
+[ -s apples ] && cat ~/. apples -n 
 }
