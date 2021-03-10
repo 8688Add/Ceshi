@@ -150,10 +150,12 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y" ${Home}/.config`
 	sed -i 's/CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray is not set/g' ${Home}/.config
 	echo -e "\nCONFIG_PACKAGE_luci-app-bypass=y" >> ${Home}/.config
 	echo " 检测到你选择luci-app-bypass勾选了V2ray跟Xary冲突，已删除V2ray" >>CHONGTU
+	echo "插件冲突信息" > ${Home}/Chajianlibiao
 fi
 if [[ `grep -c "CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y" ${Home}/.config` -eq '1' ]]; then
 	sed -i 's/CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray is not set/g' ${Home}/.config
 	echo " 检测到你选择luci-app-ssr-plus勾选了V2ray跟Xary冲突，已删除V2ray" >>CHONGTU
+	echo "插件冲突信息" > ${Home}/Chajianlibiao
 fi
 if [[ `grep -c "CONFIG_PACKAGE_luci-app-samba=y" ${Home}/.config` -eq '1' ]]; then
 	if [[ `grep -c "CONFIG_PACKAGE_luci-app-samba4=y" ${Home}/.config` -eq '1' ]]; then
@@ -162,6 +164,7 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-app-samba=y" ${Home}/.config` -eq '1' ]]; th
 		sed -i 's/CONFIG_PACKAGE_luci-i18n-samba-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-samba-zh-cn is not set/g' ${Home}/.config
 		sed -i 's/CONFIG_PACKAGE_samba36-server=y/# CONFIG_PACKAGE_samba36-server is not set/g' ${Home}/.config
 		echo " 检测到你同时选择luci-app-samba和luci-app-samba4，插件有冲突，已删除luci-app-samba" >>CHONGTU
+		echo "插件冲突信息" > ${Home}/Chajianlibiao
 	fi
 	
 fi
@@ -172,6 +175,7 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-app-docker=y" ${Home}/.config` -eq '1' ]]; t
 		sed -i 's/CONFIG_PACKAGE_luci-lib-docker=y/# CONFIG_PACKAGE_luci-lib-docker is not set/g' ${Home}/.config
 		sed -i 's/CONFIG_PACKAGE_luci-i18n-dockerman-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-dockerman-zh-cn is not set/g' ${Home}/.config
 		echo " 检测到你同时选择luci-app-docker和luci-app-dockerman，插件有冲突，已删除luci-app-dockerman" >>CHONGTU
+		echo "插件冲突信息" > ${Home}/Chajianlibiao
 	fi
 	
 fi
@@ -181,6 +185,7 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-app-autopoweroff=y" ${Home}/.config` -eq '1'
 		sed -i 's/CONFIG_PACKAGE_luci-app-autoreboot=y/# CONFIG_PACKAGE_luci-app-autoreboot is not set/g' ${Home}/.config
 		sed -i 's/CONFIG_PACKAGE_luci-i18n-autoreboot-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-autoreboot-zh-cn=y is not set/g' ${Home}/.config
 		echo " 检测到你同时选择luci-app-autopoweroff和luci-app-autoreboot，插件有冲突，已删除luci-app-autoreboot" >>CHONGTU
+		echo "插件冲突信息" > ${Home}/Chajianlibiao
 	fi
 	
 fi
@@ -190,12 +195,19 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-app-advanced=y" ${Home}/.config` -eq '1' ]];
 		sed -i 's/CONFIG_PACKAGE_luci-app-filebrowser=y/# CONFIG_PACKAGE_luci-app-filebrowser is not set/g' ${Home}/.config
 		sed -i 's/CONFIG_PACKAGE_luci-i18n-filebrowser-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-filebrowser-zh-cn=y is not set/g' ${Home}/.config
 		echo " 检测到你同时选择luci-app-advanced和luci-app-filebrowser，插件有冲突，已删除luci-app-filebrowser" >>CHONGTU
+		echo "插件冲突信息" > ${Home}/Chajianlibiao
 	fi
 	
 fi
+
+if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
 echo "" >>CHONGTU
 echo " 以上操作非您所需，请关闭此次编译，重新开始编译，避开冲突重新选择插件" >>CHONGTU
 echo "" >>CHONGTU
+else
+rm -rf {CHONGTU,Chajianlibiao}
+fi
+
 }
 
 
@@ -358,14 +370,20 @@ else
 fi
 echo " * 您当前使用的是【${Modelfile}】文件夹编译【${TARGET_PROFILE}】固件,请核对以上信息是否正确！*"
 echo ""
+if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
+	echo ""
+	echo ""
+	[ -s CHONGTU ] && cat CHONGTU1
+	echo ""
+fi
+if [ -n "$(ls -A "${Home}/Plug-in" 2>/dev/null)" ]; then
+	echo ""
+	echo "	已选插件列表"
+	[ -s Plug-in ] && cat -n Plug-in
+	echo ""
+fi
 echo ""
 echo " 系统空间      类型   总数  已用  可用 使用率"
 cd ../ && df -hT $PWD && cd openwrt
-echo ""
-echo ""
-[ -s CHONGTU ] && cat CHONGTU1
-echo ""
-echo ""
-echo "	已选插件列表"
-[ -s Plug-in ] && cat -n Plug-in
+rm -rf {CHONGTU,Plug-in,Chajianlibiao}
 }
