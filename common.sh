@@ -144,16 +144,16 @@ fi
 # 判断脚插件冲突
 
 Diy_chajian() {
-echo "插件信息列表" > ${Home}/Plug-in
+echo "	插件冲突信息" > ${Home}/CHONGTU
 
 if [[ `grep -c "CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y" ${Home}/.config` -eq '1' ]]; then
 	sed -i 's/CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray is not set/g' ${Home}/.config
 	echo -e "\nCONFIG_PACKAGE_luci-app-bypass=y" >> ${Home}/.config
-	echo "检测到你选择luci-app-bypass勾选了V2ray跟Xary冲突，已删除V2ray" >>Plug-in
+	echo " 检测到你选择luci-app-bypass勾选了V2ray跟Xary冲突，已删除V2ray" >>CHONGTU
 fi
 if [[ `grep -c "CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y" ${Home}/.config` -eq '1' ]]; then
 	sed -i 's/CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray is not set/g' ${Home}/.config
-	echo "检测到你选择luci-app-ssr-plus勾选了V2ray跟Xary冲突，已删除V2ray" >>Plug-in
+	echo " 检测到你选择luci-app-ssr-plus勾选了V2ray跟Xary冲突，已删除V2ray" >>CHONGTU
 fi
 if [[ `grep -c "CONFIG_PACKAGE_luci-app-samba=y" ${Home}/.config` -eq '1' ]]; then
 	if [[ `grep -c "CONFIG_PACKAGE_luci-app-samba4=y" ${Home}/.config` -eq '1' ]]; then
@@ -161,7 +161,7 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-app-samba=y" ${Home}/.config` -eq '1' ]]; th
 		sed -i 's/CONFIG_PACKAGE_luci-app-samba=y/# CONFIG_PACKAGE_luci-app-samba is not set/g' ${Home}/.config
 		sed -i 's/CONFIG_PACKAGE_luci-i18n-samba-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-samba-zh-cn is not set/g' ${Home}/.config
 		sed -i 's/CONFIG_PACKAGE_samba36-server=y/# CONFIG_PACKAGE_samba36-server is not set/g' ${Home}/.config
-		echo "检测到你同时选择luci-app-samba和luci-app-samba4，插件有冲突，已删除luci-app-samba" >>Plug-in
+		echo " 检测到你同时选择luci-app-samba和luci-app-samba4，插件有冲突，已删除luci-app-samba" >>CHONGTU
 	fi
 	
 fi
@@ -171,7 +171,7 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-app-docker=y" ${Home}/.config` -eq '1' ]]; t
 		sed -i 's/CONFIG_PACKAGE_luci-app-dockerman=y/# CONFIG_PACKAGE_luci-app-dockerman is not set/g' ${Home}/.config
 		sed -i 's/CONFIG_PACKAGE_luci-lib-docker=y/# CONFIG_PACKAGE_luci-lib-docker is not set/g' ${Home}/.config
 		sed -i 's/CONFIG_PACKAGE_luci-i18n-dockerman-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-dockerman-zh-cn is not set/g' ${Home}/.config
-		echo "检测到你同时选择luci-app-docker和luci-app-dockerman，插件有冲突，已删除luci-app-dockerman" >>Plug-in
+		echo " 检测到你同时选择luci-app-docker和luci-app-dockerman，插件有冲突，已删除luci-app-dockerman" >>CHONGTU
 	fi
 	
 fi
@@ -180,7 +180,7 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-app-autopoweroff=y" ${Home}/.config` -eq '1'
 	if [[ `grep -c "CONFIG_PACKAGE_luci-app-autoreboot=y" ${Home}/.config` -eq '1' ]]; then
 		sed -i 's/CONFIG_PACKAGE_luci-app-autoreboot=y/# CONFIG_PACKAGE_luci-app-autoreboot is not set/g' ${Home}/.config
 		sed -i 's/CONFIG_PACKAGE_luci-i18n-autoreboot-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-autoreboot-zh-cn=y is not set/g' ${Home}/.config
-		echo "检测到你同时选择luci-app-autopoweroff和luci-app-autoreboot，插件有冲突，已删除luci-app-autoreboot" >>Plug-in
+		echo " 检测到你同时选择luci-app-autopoweroff和luci-app-autoreboot，插件有冲突，已删除luci-app-autoreboot" >>CHONGTU
 	fi
 	
 fi
@@ -189,13 +189,13 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-app-advanced=y" ${Home}/.config` -eq '1' ]];
 	if [[ `grep -c "CONFIG_PACKAGE_luci-app-filebrowser=y" ${Home}/.config` -eq '1' ]]; then
 		sed -i 's/CONFIG_PACKAGE_luci-app-filebrowser=y/# CONFIG_PACKAGE_luci-app-filebrowser is not set/g' ${Home}/.config
 		sed -i 's/CONFIG_PACKAGE_luci-i18n-filebrowser-zh-cn=y/# CONFIG_PACKAGE_luci-i18n-filebrowser-zh-cn=y is not set/g' ${Home}/.config
-		echo "检测到你同时选择luci-app-advanced和luci-app-filebrowser，插件有冲突，已删除luci-app-filebrowser" >>Plug-in
+		echo " 检测到你同时选择luci-app-advanced和luci-app-filebrowser，插件有冲突，已删除luci-app-filebrowser" >>CHONGTU
 	fi
 	
 fi
-echo "" >>Plug-in
-echo "以上操作非您所需，请关闭此次编译，重新开始编译，避开冲突重新选择插件" >>Plug-in
-echo "" >>Plug-in
+echo "" >>CHONGTU
+echo " 以上操作非您所需，请关闭此次编译，重新开始编译，避开冲突重新选择插件" >>CHONGTU
+echo "" >>CHONGTU
 }
 
 
@@ -203,11 +203,9 @@ echo "" >>Plug-in
 # 判断是否选择AdGuard Home是就指定机型给内核，判断是否选择v2ray，有就去掉
 
 Diy_adgu() {
-./scripts/diffconfig.sh > CHAJIAN
-grep -i CONFIG_PACKAGE_luci-app CHAJIAN | grep  -v \# >>Plug-in
+grep -i CONFIG_PACKAGE_luci-app .config | grep  -v \# >Plug-in
 sed -i "s/=y//g" Plug-in
 sed -i "s/CONFIG_PACKAGE_//g" Plug-in
-rm -rf CHAJIAN
 
 
 if [ `grep -c "CONFIG_TARGET_x86_64=y" ${Home}/.config` -eq '1' ]; then
@@ -363,6 +361,9 @@ echo ""
 echo ""
 echo " 系统空间      类型   总数  已用  可用 使用率"
 cd ../ && df -hT $PWD && cd openwrt
+echo ""
+echo ""
+[ -s CHONGTU ] && cat CHONGTU
 echo ""
 echo ""
 echo "插件列表"
