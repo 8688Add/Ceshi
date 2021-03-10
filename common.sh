@@ -144,7 +144,7 @@ fi
 # 判断脚插件冲突
 
 Diy_chajian() {
-echo "	插件冲突信息" > ${Home}/CHONGTU
+echo "			插件冲突信息" > ${Home}/CHONGTU
 
 if [[ `grep -c "CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y" ${Home}/.config` -eq '1' ]]; then
 	sed -i 's/CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y/# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray is not set/g' ${Home}/.config
