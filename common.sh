@@ -51,7 +51,6 @@ find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -
 ################################################################################################################
 Diy_lede2() {
 echo
-sed -i '$i '"chmod -R 777 /etc/init.d/AdGuardHome /usr/share/AdGuardHome/addhost.sh /usr/bin/AdGuardHome"'' ./package/lean/default-settings/files/zzz-default-settings
 }
 
 ################################################################################################################
@@ -80,7 +79,6 @@ find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -
 Diy_lienol2() {
 echo
 rm -rf feeds/packages/net/adguardhome
-sed -i '$i '"chmod -R 777 /etc/init.d/AdGuardHome /usr/share/AdGuardHome/addhost.sh /usr/bin/AdGuardHome"'' ./package/default-settings/files/zzz-default-settings
 }
 
 ################################################################################################################
@@ -101,7 +99,6 @@ rm -rf package/lean/luci-theme-argon
 #curl -fsSL https://raw.githubusercontent.com/1715173329/nanopi-r2s-openwrt/master/patches/1806-modify_for_r2s.patch > "${PATH1}/patches"/1806-modify_for_r2s.patch
 #fi
 git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app-bypass
-
 }
 
 ################################################################################################################
