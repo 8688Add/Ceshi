@@ -193,9 +193,9 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-app-advanced=y" ${Home}/.config` -eq '1' ]];
 	fi
 	
 fi
-echo
-echo "以上操作非您所需，请关闭此次编译，重新开始编译，避开冲突重新选择插件"
-echo
+echo "" >>Plug-in
+echo "以上操作非您所需，请关闭此次编译，重新开始编译，避开冲突重新选择插件" >>Plug-in
+echo "" >>Plug-in
 }
 
 
