@@ -366,6 +366,6 @@ echo ""
 [ -s CHONGTU ] && cat CHONGTU
 echo ""
 echo ""
-echo "插件列表"
+echo "	已选插件列表"
 [ -s Plug-in ] && cat -n Plug-in
 }
