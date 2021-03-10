@@ -218,7 +218,7 @@ Diy_adgu() {
 grep -i CONFIG_PACKAGE_luci-app .config | grep  -v \# >Plug-in
 sed -i "s/=y//g" Plug-in
 sed -i "s/CONFIG_PACKAGE_//g" Plug-in
-sed 's/INCLUDE//g' Plug-in
+sed -i '/INCLUDE/d' Plug-in > /dev/null 2>&1
 
 
 if [ `grep -c "CONFIG_TARGET_x86_64=y" ${Home}/.config` -eq '1' ]; then
