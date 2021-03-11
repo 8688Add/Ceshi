@@ -51,10 +51,7 @@ find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -
 ################################################################################################################
 Diy_lede2() {
 echo
-sed -i '$i '"sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
-sed -i '$i '"sed -i '/luciname/d' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
-sed -i "/exit 0/i\sed -i '/<%=pcdata(ver.distversion)%>/d' /usr/lib/lua/luci/view/admin_status/index.htm" package/lean/default-settings/files/zzz-default-settings
-sed -i "/exit 0/i\sed -i '/(<%=pcdata(ver.luciversion)%>)/d' /usr/lib/lua/luci/view/admin_status/index.htm" package/lean/default-settings/files/zzz-default-settings
+curl -fsSL https://raw.githubusercontent.com/281677160/ceshi1/AdGuard/index.htm > feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
 }
 
 ################################################################################################################
