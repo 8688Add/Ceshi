@@ -63,7 +63,8 @@ Diy_lienol() {
 cp -Rf build/common/LIENOL/* "${PATH1}"
 rm -rf package/diy/luci-app-adguardhome
 rm -rf package/lean/{luci-app-netdata,luci-theme-argon,k3screenctrl}
-
+chmod -R 777 package/danshui/luci-app-adguardhome/root/etc/init.d/AdGuardHome
+chmod -R 777 package/danshui/luci-app-adguardhome/root/usr/share/AdGuardHome/addhost.sh
 git clone https://github.com/fw876/helloworld package/danshui/luci-app-ssr-plus
 git clone https://github.com/xiaorouji/openwrt-passwall package/danshui/luci-app-passwall
 git clone https://github.com/jerrykuku/luci-app-vssr package/danshui/luci-app-vssr
