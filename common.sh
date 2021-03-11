@@ -249,7 +249,9 @@ case "${REPO_URL}" in
 ;;
 "${LIENOL}") 
 	if [[ `grep -c "CONFIG_PACKAGE_luci-app-adguardhome=y" ${Home}/.config` -eq '1' ]]; then
+		sed -i '/exit 0/d' ./package/default-settings/files/zzz-default-settings > /dev/null 2>&1
 		sed -i '$i '"chmod -R 777 /etc/init.d/AdGuardHome /usr/share/AdGuardHome/addhost.sh"'' ./package/default-settings/files/zzz-default-settings
+		sed -i '$i '"exit 0"'' ./package/default-settings/files/zzz-default-settings
 		if [[ "${TARGET_ADG}" == "x86-64" ]];then
 			svn co https://github.com/281677160/ceshi1/branches/AdGuard/x86-64/usr/bin ${Home}/files/usr/bin
 			chmod -R 777 ${Home}/files/usr/bin/AdGuardHome
