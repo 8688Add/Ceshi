@@ -80,6 +80,8 @@ find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -
 Diy_lienol2() {
 echo
 rm -rf feeds/packages/net/adguardhome
+sed -i "/exit 0/i\sed -i 's/<%=pcdata(ver.distversion)%>/<%=pcdata(ver.distversion)%><!--/g' /usr/lib/lua/luci/view/admin_status/index.htm" package/default-settings/files/zzz-default-settings
+sed -i "/exit 0/i\sed -i 's/(<%=pcdata(ver.luciversion)%>)/(<%=pcdata(ver.luciversion)%>)-->/g' /usr/lib/lua/luci/view/admin_status/index.htm" package/default-settings/files/zzz-default-settings
 }
 
 ################################################################################################################
@@ -107,6 +109,8 @@ git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app
 ################################################################################################################
 Diy_immortalwrt2() {
 echo
+sed -i "/exit 0/i\sed -i 's/<%=pcdata(ver.distversion)%>/<%=pcdata(ver.distversion)%><!--/g' /usr/lib/lua/luci/view/admin_status/index.htm" package/lean/default-settings/files/zzz-default-settings
+sed -i "/exit 0/i\sed -i 's/(<%=pcdata(ver.luciversion)%>)/(<%=pcdata(ver.luciversion)%>)-->/g' /usr/lib/lua/luci/view/admin_status/index.htm" package/lean/default-settings/files/zzz-default-settings
 }
 
 ################################################################################################################
