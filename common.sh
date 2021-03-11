@@ -82,8 +82,8 @@ echo
 rm -rf feeds/packages/net/adguardhome
 sed -i "/exit 0/i\sed -i 's/<%=pcdata(ver.distversion)%>/<%=pcdata(ver.distversion)%><!--/g' /usr/lib/lua/luci/view/admin_status/index.htm" package/default-settings/files/zzz-default-settings
 sed -i "/exit 0/i\sed -i 's/(<%=pcdata(ver.luciversion)%>)/(<%=pcdata(ver.luciversion)%>)-->/g' /usr/lib/lua/luci/view/admin_status/index.htm" package/default-settings/files/zzz-default-settings
-if [[ `grep -c "CONFIG_PACKAGE_luci-app-passwall=y" ${Home}/.config` -eq '0' ]]; then
-	echo -e "\nCONFIG_PACKAGE_luci-app-passwall=y" >> "${Home}/.config"
+if [[ `grep -c "# CONFIG_PACKAGE_luci-app-passwall is not set" ${Home}/.config` -eq '1' ]]; then
+	sed -i 's/# CONFIG_PACKAGE_luci-app-passwall is not set/CONFIG_PACKAGE_luci-app-passwall=y/g' ${Home}/.config
 fi
 }
 
