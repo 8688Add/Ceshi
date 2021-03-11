@@ -51,7 +51,6 @@ find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -
 ################################################################################################################
 Diy_lede2() {
 echo
-curl -fsSL https://raw.githubusercontent.com/281677160/ceshi1/AdGuard/index.htm > feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
 }
 
 ################################################################################################################
