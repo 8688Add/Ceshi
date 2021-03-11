@@ -53,8 +53,8 @@ Diy_lede2() {
 echo
 sed -i '$i '"sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
 sed -i '$i '"sed -i '/luciname/d' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
-sed -i "/exit 0/i\sed -i 's/<%=pcdata(ver.distversion)%>/<%=pcdata(ver.distversion)%><!--/g' /usr/lib/lua/luci/view/admin_status/index.htm" package/lean/default-settings/files/zzz-default-settings
-sed -i "/exit 0/i\sed -i 's/(<%=pcdata(ver.luciversion)%>)/(<%=pcdata(ver.luciversion)%>)-->/g' /usr/lib/lua/luci/view/admin_status/index.htm" package/lean/default-settings/files/zzz-default-settings
+sed -i "/exit 0/i\sed -i '/<%=pcdata(ver.distversion)%>/d' /usr/lib/lua/luci/view/admin_status/index.htm" package/lean/default-settings/files/zzz-default-settings
+sed -i "/exit 0/i\sed -i '/(<%=pcdata(ver.luciversion)%>)/d' /usr/lib/lua/luci/view/admin_status/index.htm" package/lean/default-settings/files/zzz-default-settings
 }
 
 ################################################################################################################
