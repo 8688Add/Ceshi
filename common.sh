@@ -50,8 +50,8 @@ find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -
 ################################################################################################################
 Diy_lede2() {
 echo
-mv "${Home}/build/common"/files ./
-mv "${Home}/build/common"/diy/* ./
+mv "${Home}/build/common/LEDE"/files ./
+mv "${Home}/build/common/LEDE"/diy/* ./
 sed -i '$i '"sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
 sed -i '$i '"sed -i '/luciname/d' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
 sed -i '$i '"echo -e "luciversion\ =\ \"18.06-SNAPSHOT\"" >> /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
