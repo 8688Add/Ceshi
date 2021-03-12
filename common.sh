@@ -49,12 +49,8 @@ find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -
 # LEDE源码通用diy2.sh文件
 ################################################################################################################
 Diy_lede2() {
-echo
-cp -Rf build/common/LEDE/files ${Home}
-cp -Rf build/common/LEDE/diy/* ${Home}
-sed -i '$i '"sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
-sed -i '$i '"sed -i '/luciname/d' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
-sed -i '$i '"echo -e "luciversion\ =\ \"18.06-SNAPSHOT\"" >> /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
+cp -Rf "${Home}"/build/common/LEDE/files "${Home}"
+cp -Rf "${Home}"/build/common/LEDE/diy/* "${Home}"
 }
 
 ################################################################################################################
@@ -80,7 +76,8 @@ find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -
 # LIENOL源码通用diy2.sh文件
 ################################################################################################################
 Diy_lienol2() {
-echo
+cp -Rf "${Home}"/build/common/LIENOL/files "${Home}"
+cp -Rf "${Home}"/build/common/LIENOL/diy/* "${Home}"
 rm -rf feeds/packages/net/adguardhome
 sed -i "/exit 0/i\sed -i 's/<%=pcdata(ver.distversion)%>/<%=pcdata(ver.distversion)%><!--/g' /usr/lib/lua/luci/view/admin_status/index.htm" package/default-settings/files/zzz-default-settings
 sed -i "/exit 0/i\sed -i 's/(<%=pcdata(ver.luciversion)%>)/(<%=pcdata(ver.luciversion)%>)-->/g' /usr/lib/lua/luci/view/admin_status/index.htm" package/default-settings/files/zzz-default-settings
@@ -111,10 +108,8 @@ git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app
 # 天灵源码通用diy2.sh文件
 ################################################################################################################
 Diy_immortalwrt2() {
-echo
-sed -i '$i '"sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
-sed -i '$i '"sed -i '/luciname/d' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
-sed -i '$i '"echo -e "luciversion = \"OpenWrt\"" >> /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
+cp -Rf "${Home}"/build/common/PROJECT/files "${Home}"
+cp -Rf "${Home}"/build/common/PROJECT/diy/* "${Home}"
 }
 
 ################################################################################################################
