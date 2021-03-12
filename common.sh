@@ -53,8 +53,7 @@ cp -Rf "${Home}"/build/common/LEDE/files "${Home}"
 cp -Rf "${Home}"/build/common/LEDE/diy/* "${Home}"
 sed -i "/exit 0/i\sed -i '/luciname/d' /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
 sed -i "/exit 0/i\sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
-sed -i '$i '"echo \"luciversion\ =\ \"18.06-SNAPSHOT\"\" >> /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
-sed -i '$i '"sed -i 's/18.06-SNAPSHOT/\"18.06-SNAPSHOT\"/g' /usr/lib/lua/luci/version.lua"'' package/lean/default-settings/files/zzz-default-settings
+sed -i "/exit 0/i\echo 'luciversion\ =\ \"18.06-SNAPSHOT\"' >> /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
 }
 
 ################################################################################################################
@@ -114,8 +113,7 @@ cp -Rf "${Home}"/build/common/PROJECT/files "${Home}"
 cp -Rf "${Home}"/build/common/PROJECT/diy/* "${Home}"
 sed -i "/exit 0/i\sed -i '/luciname/d' /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
 sed -i "/exit 0/i\sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
-sed -i "/exit 0/i\echo \"luciversion\ =\ \"OpenWrt\"\" >> /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
-sed -i "/exit 0/i\sed -i 's/=\ OpenWrt/=\ \"OpenWrt\"/g' /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
+sed -i "/exit 0/i\echo 'luciversion\ =\ \"OpenWrt\"' >> /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
 }
 
 ################################################################################################################
