@@ -330,6 +330,7 @@ echo " 源码作者: ${ZUOZHE}"
 echo " 编译机型: ${TARGET_PROFILE}"
 echo " 固件作者: ${Author}"
 echo " 仓库地址: ${Github_Repo}"
+echo " 启动编号: #${Run_number}"（本仓库第${Run_number}次启动名为[Run_workflow]工作流程）
 if [[ ${UPLOAD_BIN_DIR} == "true" ]]; then
 	echo " 上传BIN文件夹(固件+IPK): 开启"
 else
