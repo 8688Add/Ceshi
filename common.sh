@@ -406,7 +406,7 @@ if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
 fi
 if [ -n "$(ls -A "${Home}/Plug-in" 2>/dev/null)" ]; then
 	echo
-	echo "	   已选插件列表"
+	echo "	   		已选插件列表"
 	[ -s Plug-in ] && cat Plug-in
 	echo
 fi
