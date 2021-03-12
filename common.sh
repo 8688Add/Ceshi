@@ -326,7 +326,7 @@ fi
 if [[ "${Modelfile}" =~ (Lede_phicomm_n1|Project_phicomm_n1) ]]; then
 	TARGET_PROFILE="N1,Vplus,Beikeyun,L1Pro,S9xxx"
 fi
-echo ""
+echo
 echo " 编译源码: ${COMP2}"
 echo " 源码链接: ${REPO_URL}"
 echo " 源码分支: ${REPO_BRANCH}"
@@ -334,7 +334,10 @@ echo " 源码作者: ${ZUOZHE}"
 echo " 编译机型: ${TARGET_PROFILE}"
 echo " 固件作者: ${Author}"
 echo " 仓库地址: ${Github_Repo}"
-echo " 启动编号: #${Run_number}"（本仓库第${Run_number}次启动[${Run_workflow}]工作流程）
+echo " 启动编号: ${{github.run_number}}（本仓库第${{github.run_number}}次启动[${{github.workflow}}]工作流程）"
+echo " 编译时间: $(TZ=UTC-8 date "+%Y年%m月%d日")"
+echo " 您当前使用【${Modelfile}】文件夹编译【${TARGET_PROFILE}】固件"
+echo
 if [[ ${UPLOAD_BIN_DIR} == "true" ]]; then
 	echo " 上传BIN文件夹(固件+IPK): 开启"
 else
@@ -382,6 +385,8 @@ if [[ ${REGULAR_UPDATE} == "true" ]]; then
 	echo " 固件版本: ${Openwrt_Version}"
 	echo " 云端路径: ${Github_UP_RELEASE}"
 	echo " 《编译成功，会自动把固件发布到指定地址，然后才会生成云端路径》"
+	echo " 《5.0版本跟5.2版本的检测机制不一样，首次编译完5.2版本的请手动安装5.2版本编译的固件》"
+	echo " 《普通的那个发布固件跟云端的发布路径是两码事，如果你不需要普通发布的可以不用打开发布功能》"
 	echo " 《请把“REPO_TOKEN”密匙设置好,没设置好密匙不能发布就生成不了云端地址》"
 	echo " 《x86-64、phicomm_k2p、phicomm-k3、newifi-d2已自动适配固件名字跟后缀，无需自行设置》"
 	echo " 《如有其他机子可以用定时更新固件的话，请告诉我，我把固件名字跟后缀适配了》"
@@ -390,8 +395,6 @@ else
 	echo " 把定时自动更新插件编译进固件: 关闭"
 	echo
 fi
-echo " * 您当前使用的是【${Modelfile}】文件夹编译【${TARGET_PROFILE}】固件,编译时间 $(TZ=UTC-8 date "+%Y年%m月%d日")！*"
-echo
 echo " 系统空间      类型   总数  已用  可用 使用率"
 cd ../ && df -hT $PWD && cd openwrt
 echo
