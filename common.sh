@@ -60,7 +60,6 @@ cp -Rf "${Home}"/build/common/LEDE/diy/* "${Home}"
 # LIENOL源码通用diy1.sh文件
 ################################################################################################################
 Diy_lienol() {
-cp -Rf build/common/LIENOL/* "${PATH1}"
 rm -rf package/diy/luci-app-adguardhome
 rm -rf package/lean/{luci-app-netdata,luci-theme-argon,k3screenctrl}
 git clone https://github.com/fw876/helloworld package/danshui/luci-app-ssr-plus
@@ -91,7 +90,6 @@ sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += luci-app-passwall/g' target/li
 # 天灵源码通用diy1.sh文件
 ################################################################################################################
 Diy_immortalwrt() {
-cp -Rf build/common/PROJECT/* "${PATH1}"
 rm -rf package/lienol/luci-app-timecontrol
 rm -rf package/ctcgfw/{luci-app-argon-config,luci-theme-argonv3,luci-app-adguardhome}
 rm -rf package/lean/luci-theme-argon
