@@ -237,6 +237,7 @@ grep -i CONFIG_PACKAGE_luci-app .config | grep  -v \# >Plug-in
 sed -i "s/=y//g" Plug-in
 sed -i "s/CONFIG_PACKAGE_//g" Plug-in
 sed -i '/INCLUDE/d' Plug-in > /dev/null 2>&1
+awk '{print "                " $0}' Plug-in > Plug
 
 
 if [ `grep -c "CONFIG_TARGET_x86_64=y" ${Home}/.config` -eq '1' ]; then
@@ -405,7 +406,7 @@ fi
 if [ -n "$(ls -A "${Home}/Plug-in" 2>/dev/null)" ]; then
 	echo
 	echo "	   已选插件列表"
-	[ -s Plug-in ] && cat -n Plug-in
+	[ -s Plug-in ] && cat -n Plugin
 	echo
 fi
 rm -rf {CHONGTU,Plug-in,Chajianlibiao}
