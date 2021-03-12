@@ -5,6 +5,7 @@
 
 # 全脚本源码通用diy.sh文件
 Diy_all() {
+cd "${PATH1}" && mkdir -p {patches,files,diy} && cd ../../
 git clone -b $REPO_BRANCH --single-branch https://github.com/281677160/openwrt-package package/danshui
 if [[ ${REGULAR_UPDATE} == "true" ]]; then
 git clone https://github.com/281677160/luci-app-autoupdate package/luci-app-autoupdate
@@ -28,7 +29,6 @@ rm -rf ./*/*/{LICENSE,README,README.md}
 # LEDE源码通用diy1.sh文件
 ################################################################################################################
 Diy_lede() {
-cp -Rf build/common/LEDE/* "${PATH1}"
 rm -rf package/lean/v2ray-plugin
 rm -rf package/lean/{luci-app-netdata,luci-theme-argon,k3screenctrl}
 sed -i 's/iptables -t nat/# iptables -t nat/g' package/lean/default-settings/files/zzz-default-settings
