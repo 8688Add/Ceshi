@@ -338,20 +338,20 @@ echo " 启动编号: ${Run_number}（本仓库第${Run_number}次启动[${Run_wo
 echo " 编译时间: $(TZ=UTC-8 date "+%Y年%m月%d日")"
 echo " 您当前使用【${Modelfile}】文件夹编译【${TARGET_PROFILE}】固件"
 echo
-if [[ ${UPLOAD_BIN_DIR} == "true" ]]; then
-	echo " 上传BIN文件夹(固件+IPK): 开启"
+if [[ ${UPLOAD_FIRMWARE} == "true" ]]; then
+	echo " 上传固件在github actions: 开启"
 else
-	echo " 上传BIN文件夹(固件+IPK): 关闭"
+	echo " 上传固件在github actions: 关闭"
 fi
 if [[ ${UPLOAD_CONFIG} == "true" ]]; then
 	echo " 上传[.config]配置文件: 开启"
 else
 	echo " 上传[.config]配置文件: 关闭"
 fi
-if [[ ${UPLOAD_FIRMWARE} == "true" ]]; then
-	echo " 上传固件在github actions: 开启"
+if [[ ${UPLOAD_BIN_DIR} == "true" ]]; then
+	echo " 上传BIN文件夹(固件+IPK): 开启"
 else
-	echo " 上传固件在github actions: 关闭"
+	echo " 上传BIN文件夹(固件+IPK): 关闭"
 fi
 if [[ ${UPLOAD_COWTRANSFER} == "true" ]]; then
 	echo " 上传固件到到【奶牛快传】和【WETRANSFER】: 开启"
