@@ -236,7 +236,6 @@ cat -n Plug-in > Plugin
 sed -i 's/	luci/ luci/g' Plugin
 awk '{print "      " $0}' Plugin > Plug-in
 
-
 if [ `grep -c "CONFIG_TARGET_x86_64=y" ${Home}/.config` -eq '1' ]; then
 	TARGET_ADG="x86-64"
 else
@@ -275,6 +274,7 @@ case "${REPO_URL}" in
 	fi
 ;;
 esac
+
 rm -rf {LICENSE,README,README.md,CONTRIBUTED.md,README_EN.md}
 rm -rf ./*/{LICENSE,README,README.md}
 rm -rf ./*/*/{LICENSE,README,README.md}
