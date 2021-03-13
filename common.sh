@@ -275,7 +275,7 @@ case "${REPO_URL}" in
 	fi
 ;;
 esac
-rm -rf {LICENSE,README,README.md}
+rm -rf {LICENSE,README,README.md,CONTRIBUTED.md,README_EN.md}
 rm -rf ./*/{LICENSE,README,README.md}
 rm -rf ./*/*/{LICENSE,README,README.md}
 rm -rf ./*/*/*/{LICENSE,README,README.md}
