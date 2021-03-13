@@ -222,7 +222,6 @@ echo "" >>CHONGTU
 else
 rm -rf {CHONGTU,Chajianlibiao}
 fi
-make defconfig
 }
 
 
