@@ -19,9 +19,6 @@ git clone https://github.com/openwrt-dev/po2lmo.git
 pushd po2lmo
 make && sudo make install
 popd
-rm -rf {LICENSE,README,README.md}
-rm -rf ./*/{LICENSE,README,README.md}
-rm -rf ./*/*/{LICENSE,README,README.md}
 }
 
 ################################################################################################################
@@ -276,6 +273,9 @@ case "${REPO_URL}" in
 	if [[ `grep -c "CONFIG_PACKAGE_luci-app-adguardhome=y" ${Home}/.config` -eq '1' ]]; then
 		sed -i "/exit 0/i\chmod -R 777 /etc/init.d/AdGuardHome /usr/share/AdGuardHome/addhost.sh" package/lean/default-settings/files/zzz-default-settings
 	fi
+rm -rf {LICENSE,README,README.md}
+rm -rf ./*/{LICENSE,README,README.md}
+rm -rf ./*/*/{LICENSE,README,README.md}
 ;;
 esac
 }
