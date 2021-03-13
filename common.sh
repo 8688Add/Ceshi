@@ -111,6 +111,7 @@ cp -Rf "${Home}"/build/common/PROJECT/diy/* "${Home}"
 sed -i "/exit 0/i\sed -i '/luciname/d' /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
 sed -i "/exit 0/i\sed -i '/luciversion/d' /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
 sed -i "/exit 0/i\echo 'luciversion\ =\ \"OpenWrt\"' >> /usr/lib/lua/luci/version.lua" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/PTION='%D %V %C'/PTION='%D %V'/g" package/base-files/files/etc/openwrt_release
 }
 
 ################################################################################################################
