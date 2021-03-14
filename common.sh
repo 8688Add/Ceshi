@@ -211,7 +211,7 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-theme-argon=y" ${Home}/.config` -eq '1' ]]; 
 	fi
 fi
 if [[ `grep -c "CONFIG_TARGET_ROOTFS_EXT4FS=y" ${Home}/.config` -eq '1' ]]; then
-	echo "EXT4=true"
+	echo "EXT4" > ${Home}/EXT4
 fi
 
 if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
@@ -378,7 +378,7 @@ fi
 if [[ ${SSHYC} == "true" ]]; then
 	echo " SSH远程连接临时开关: 开启"
 fi
-if [[ ${EXT4} == "true" ]]; then
+if [ -n "$(ls -A "${Home}/EXT4" 2>/dev/null)" ]; then
 	echo
 	echo " 您选择了ext4安装的固件格式"
 	echo " 请注意在Target Images  --->里面下面两项的数值调整"
