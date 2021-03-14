@@ -209,8 +209,10 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-theme-argon=y" ${Home}/.config` -eq '1' ]]; 
 		echo " 您同时选择luci-theme-argon和luci-theme-argon_new，插件有冲突，已删除luci-theme-argon_new" >>CHONGTU
 		echo "插件冲突信息" > ${Home}/Chajianlibiao
 	fi
-	
+if [[ `grep -c "CONFIG_TARGET_ROOTFS_EXT4FS=y" ${Home}/.config` -eq '1' ]]; then
+	echo "EXT4=true"
 fi
+
 if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
 echo "" >>CHONGTU
 echo "	以上操作如非您所需，请关闭此次编译，重新开始编译，避开冲突重新选择插件" >>CHONGTU
@@ -375,8 +377,19 @@ fi
 if [[ ${SSHYC} == "true" ]]; then
 	echo " SSH远程连接临时开关: 开启"
 fi
-echo
+if [[ ${EXT4} == "true" ]]; then
+	echo
+	echo " 您选择了ext4安装的固件格式"
+	echo " 请注意在Target Images  --->里面下面两项的数值调整"
+	echo " （）Kernel partition size (in MB) "
+	echo " （）Root filesystem partition size (in MB)"
+	echo " 请把（）Kernel partition size (in MB)设置成（30）Kernel partition size (in MB)或者更高 "
+	echo " 请把（）Root filesystem partition size (in MB)设置成（800）Root filesystem partition size (in MB)或者更高"
+	echo " Root filesystem partition size (in MB)项设置数值请避免使用‘128’、‘256’、‘512’、‘1024’等之类的数值"
+	echo " 选择了ext4安装格式的固件，Root filesystem partition size (in MB)项数值太低容易造成空间不足编译错误"
+fi
 if [[ ${REGULAR_UPDATE} == "true" ]]; then
+	echo
 	echo " 把定时自动更新插件编译进固件: 开启"
 	echo " 插件版本: ${AutoUpdate_Version}"
 	echo " 固件名称: ${Firmware_mz}"
