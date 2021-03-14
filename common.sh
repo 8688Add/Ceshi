@@ -209,6 +209,7 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-theme-argon=y" ${Home}/.config` -eq '1' ]]; 
 		echo " 您同时选择luci-theme-argon和luci-theme-argon_new，插件有冲突，已删除luci-theme-argon_new" >>CHONGTU
 		echo "插件冲突信息" > ${Home}/Chajianlibiao
 	fi
+fi
 if [[ `grep -c "CONFIG_TARGET_ROOTFS_EXT4FS=y" ${Home}/.config` -eq '1' ]]; then
 	echo "EXT4=true"
 fi
