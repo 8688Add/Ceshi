@@ -210,16 +210,29 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-theme-argon=y" ${Home}/.config` -eq '1' ]]; 
 		echo "插件冲突信息" > ${Home}/Chajianlibiao
 	fi
 fi
+
 if [[ `grep -c "CONFIG_TARGET_ROOTFS_EXT4FS=y" ${Home}/.config` -eq '1' ]]; then
 	echo "EXT4" > ${Home}/EXT4
 fi
 
+if [ -n "$(ls -A "${Home}/EXT4" 2>/dev/null)" ]; then
+	echo
+	echo " 您选择了ext4安装的固件格式"
+	echo " 请注意在Target Images  --->里面下面两项的数值调整"
+	echo " （）Kernel partition size (in MB) "
+	echo " （）Root filesystem partition size (in MB)"
+	echo " 请把（）Kernel partition size (in MB)设置成（30）Kernel partition size (in MB)或者更高 "
+	echo " 请把（）Root filesystem partition size (in MB)设置成（800）Root filesystem partition size (in MB)或者更高"
+	echo " Root filesystem partition size (in MB)项设置数值请避免使用‘128’、‘256’、‘512’、‘1024’等之类的数值"
+	echo " 选择了ext4安装格式的固件，Root filesystem partition size (in MB)项数值太低容易造成空间不足编译错误"
+fi
+
 if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
-echo "" >>CHONGTU
-echo "	以上操作如非您所需，请关闭此次编译，重新开始编译，避开冲突重新选择插件" >>CHONGTU
-echo "" >>CHONGTU
+	echo "" >>CHONGTU
+	echo "	以上操作如非您所需，请关闭此次编译，重新开始编译，避开冲突重新选择插件" >>CHONGTU
+	echo "" >>CHONGTU
 else
-rm -rf {CHONGTU,Chajianlibiao}
+	rm -rf {CHONGTU,Chajianlibiao}
 fi
 }
 
