@@ -221,7 +221,7 @@ if [[ `grep -c "CONFIG_TARGET_ROOTFS_EXT4FS=y" .config` -eq '1' ]]; then
 	echo " 请把（160）Root filesystem partition size (in MB)设置成（950）Root filesystem partition size (in MB)或者更高数值" >> ${Home}/EXT4
 	echo " Root filesystem partition size (in MB)项设置数值请避免使用‘128’、‘256’、‘512’、‘1024’等之类的数值" >> ${Home}/EXT4
 	echo " 选择了ext4安装格式的固件，Root filesystem partition size (in MB)这项数值太低容易造成插件空间不足编译错误" >> ${Home}/EXT4
-	echo " " > ${Home}/EXT4
+	echo " " >> ${Home}/EXT4
 fi
 
 if [ -n "$(ls -A "${Home}/Chajianlibiao" 2>/dev/null)" ]; then
