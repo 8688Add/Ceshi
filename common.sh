@@ -348,6 +348,9 @@ echo " 仓库地址: ${Github_Repo}"
 echo " 启动编号: #${Run_number}（本仓库第${Run_number}次启动[${Run_workflow}]工作流程）"
 echo " 编译时间: $(TZ=UTC-8 date "+%Y年%m月%d号.%H时%M分")"
 echo " 您当前使用【${Modelfile}】文件夹编译【${TARGET_PROFILE}】固件"
+if [ -n "$(ls -A "${Home}/EXT4" 2>/dev/null)" ]; then
+	[ -s EXT4 ] && cat EXT4
+fi
 echo
 if [[ ${UPLOAD_FIRMWARE} == "true" ]]; then
 	echo " 上传固件在github actions: 开启"
@@ -386,9 +389,6 @@ else
 fi
 if [[ ${SSHYC} == "true" ]]; then
 	echo " SSH远程连接临时开关: 开启"
-fi
-if [ -n "$(ls -A "${Home}/EXT4" 2>/dev/null)" ]; then
-	[ -s EXT4 ] && cat EXT4
 fi
 if [[ ${REGULAR_UPDATE} == "true" ]]; then
 	echo
