@@ -306,17 +306,15 @@ rm -rf ./*/*/*/{LICENSE,README,README.md}
 
 Diy_n1() {
 git clone --depth 1 https://github.com/ophub/amlogic-s9xxx-openwrt.git
-cd amlogic-s9xxx-openwrt/
-[ -d openwrt-armvirt ] || mkdir -p openwrt-armvirt
-cp -f ../openwrt/bin/targets/*/*/*.tar.gz openwrt-armvirt/ && sync
-sudo rm -rf ../openwrt && sync
-sudo rm -rf /workdir && sync
+cd amlogic-s9xxx-openwrt
+mkdir -p openwrt-armvirt
+cp -f ../openwrt/bin/targets/armvirt/*/*.tar.gz openwrt-armvirt/ && sync
 sudo chmod +x make
-sudo ./make -d -b s905x3_s905x2_s905x_s905d_s922x_s912 -k 5.9.14_5.4.83
+sudo ./make -d -b s905x_s912_s905d_s905x2_s905x3_s922x -k 5.9.14_5.4.83
 cd out/ && sudo gzip *.img
-cd ../../
-mv -f amlogic-s9xxx-openwrt/out/*/*.img.gz openwrt/bin/targets/armvirt/*
-rm -rf amlogic-s9xxx-openwrt
+mv -f ./*.img.gz ../../openwrt/bin/targets/armvirt/* && sync
+rm -rf ../../amlogic-s9xxx-openwrt
+cd ../../openwrt
 }
 
 ################################################################################################################
