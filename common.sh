@@ -107,6 +107,8 @@ Diy_immortalwrt2() {
 cp -Rf "${Home}"/build/common/PROJECT/files "${Home}"
 cp -Rf "${Home}"/build/common/PROJECT/diy/* "${Home}"
 sed -i '/exit 0/i\echo "*/1 * * * * chmod +x /etc/webweb && source /etc/webweb" >> /etc/crontabs/root' package/lean/default-settings/files/zzz-default-settings
+sed -i "/exit 0/i\sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/PTION='%D %V %C'/PTION='%D %V'/g" package/base-files/files/etc/openwrt_release
 if [[ `grep -c "0.105.1" ${Home}/feeds/packages/net/adguardhome/Makefile` -eq '1' ]]; then
 	sed -i 's/0.105.1/0.105.2/g' ${Home}/feeds/packages/net/adguardhome/Makefile
 fi
@@ -211,7 +213,12 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-theme-argon=y" ${Home}/.config` -eq '1' ]]; 
 		echo "插件冲突信息" > ${Home}/Chajianlibiao
 	fi
 fi
-
+if [[ `grep -c "CONFIG_PACKAGE_luci-app-sfe=y" ${Home}/.config` -eq '1' ]]; then
+	if [[ `grep -c "CONFIG_PACKAGE_luci-app-flowoffload=y" ${Home}/.config` -eq '1' ]]; then
+		echo " 您同时选择luci-app-sfe和luci-app-flowoffload，两个Turbo ACC网络加速" >>CHONGTU
+		echo "插件冲突信息" > ${Home}/Chajianlibiao
+	fi
+fi
 if [[ `grep -c "CONFIG_TARGET_ROOTFS_EXT4FS=y" .config` -eq '1' ]]; then
 	echo " " > ${Home}/EXT4
 	echo " 请注意，您选择了ext4安装的固件格式" >> ${Home}/EXT4
