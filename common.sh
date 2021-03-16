@@ -312,7 +312,24 @@ sudo chmod +x make
 sudo ./make -d -b s905x_s912_s905d_s905x2_s905x3_s922x -k 5.9.14_5.4.83
 cd out/ && sudo gzip *.img
 mv -f *.img.gz ../../openwrt/bin/targets/armvirt/* && sync
-rm -rf ../../amlogic-s9xxx-openwrt
+cd ../../
+
+
+svn co https://github.com/281677160/N1/trunk reform
+cp openwrt/bin/targets/armvirt/*/*.tar.gz reform/openwrt
+cd reform
+sudo ./gen_openwrt -d -k latest   
+devices=("phicomm-n1" "rk3328" "s9xxx" "vplus")
+cd out
+for x in ${devices[*]}; do
+cd $x
+filename=$(ls | awk -F '.img' '{print $1}')
+gzip *.img
+cd ../
+echo "firmware_$x=$filename"
+done
+mv -f ./*/*.img.gz ../../openwrt/bin/targets/*/*
+rm -rf ../../{reform,amlogic-s9xxx-openwrt}
 cd ../../openwrt
 }
 
