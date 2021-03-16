@@ -312,7 +312,7 @@ cp -f ../openwrt/bin/targets/armvirt/*/*.tar.gz openwrt-armvirt/ && sync
 sudo chmod +x make
 sudo ./make -d -b s905x_s912_s905d_s905x2_s905x3_s922x -k 5.9.14_5.4.83
 cd out/ && sudo gzip *.img
-mv -f ./*.img.gz ../../openwrt/bin/targets/armvirt/* && sync
+mv -f *.img.gz ../../openwrt/bin/targets/armvirt/* && sync
 rm -rf ../../amlogic-s9xxx-openwrt
 cd ../../openwrt
 }
