@@ -318,7 +318,7 @@ cd ../../
 svn co https://github.com/281677160/N1/trunk reform
 cp openwrt/bin/targets/armvirt/*/*.tar.gz reform/openwrt
 cd reform
-sudo ./gen_openwrt -d -k latest   
+sudo ./gen_openwrt -d -k latest
 devices=("phicomm-n1" "rk3328" "s9xxx" "vplus")
 cd out
 for x in ${devices[*]}; do
@@ -328,7 +328,7 @@ gzip *.img
 cd ../
 echo "firmware_$x=$filename"
 done
-mv -f ./*/*.img.gz ../../openwrt/bin/targets/*/*
+mv -f ./*/*.img.gz ../../openwrt/bin/targets/armvirt/*
 rm -rf ../../{reform,amlogic-s9xxx-openwrt}
 cd ../../openwrt
 }
