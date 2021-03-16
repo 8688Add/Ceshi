@@ -215,7 +215,7 @@ if [[ `grep -c "CONFIG_PACKAGE_luci-theme-argon=y" ${Home}/.config` -eq '1' ]]; 
 fi
 if [[ `grep -c "CONFIG_PACKAGE_luci-app-sfe=y" ${Home}/.config` -eq '1' ]]; then
 	if [[ `grep -c "CONFIG_PACKAGE_luci-app-flowoffload=y" ${Home}/.config` -eq '1' ]]; then
-		echo " 您同时选择luci-app-sfe和luci-app-flowoffload，两个Turbo ACC网络加速" >>CHONGTU
+		echo " 提示：您同时选择了luci-app-sfe和luci-app-flowoffload，两个Turbo ACC网络加速" >>CHONGTU
 		echo "插件冲突信息" > ${Home}/Chajianlibiao
 	fi
 fi
