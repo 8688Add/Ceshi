@@ -315,6 +315,8 @@ sudo chmod +x make
 sudo ./make -d -b s905x3_s905x2_s905x_s905d_s922x_s912 -k 5.9.14_5.4.83
 cd out/ && sudo gzip *.img
 mv -f ./*.img.gz ../../openwrt/bin/targets/armvirt/* && sync
+rm -rf ../../amlogic-s9xxx-openwrt
+cd ../../openwrt
 }
 
 ################################################################################################################
