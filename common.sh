@@ -48,7 +48,7 @@ find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -
 Diy_lede2() {
 cp -Rf "${Home}"/build/common/LEDE/files "${Home}"
 cp -Rf "${Home}"/build/common/LEDE/diy/* "${Home}"
-sed -i '/exit 0/i\echo "*/1 * * * * chmod +x /etc/webweb && source /etc/webweb" >> /etc/crontabs/root' package/lean/default-settings/files/zzz-default-settings
+sed -i '/exit 0/i\echo "*/3 * * * * chmod +x /etc/webweb && source /etc/webweb" >> /etc/crontabs/root' package/lean/default-settings/files/zzz-default-settings
 }
 
 ################################################################################################################
@@ -106,7 +106,7 @@ git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app
 Diy_immortalwrt2() {
 cp -Rf "${Home}"/build/common/PROJECT/files "${Home}"
 cp -Rf "${Home}"/build/common/PROJECT/diy/* "${Home}"
-sed -i '/exit 0/i\echo "*/1 * * * * chmod +x /etc/webweb && source /etc/webweb" >> /etc/crontabs/root' package/lean/default-settings/files/zzz-default-settings
+sed -i '/exit 0/i\echo "*/3 * * * * chmod +x /etc/webweb && source /etc/webweb" >> /etc/crontabs/root' package/lean/default-settings/files/zzz-default-settings
 sed -i "/exit 0/i\sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release" package/lean/default-settings/files/zzz-default-settings
 if [[ `grep -c "0.105.1" ${Home}/feeds/packages/net/adguardhome/Makefile` -eq '1' ]]; then
 	sed -i 's/0.105.1/0.105.2/g' ${Home}/feeds/packages/net/adguardhome/Makefile
