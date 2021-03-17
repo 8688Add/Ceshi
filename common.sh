@@ -365,7 +365,7 @@ fi
 if [[ "${Modelfile}" =~ (Lede_phicomm_n1|Project_phicomm_n1) ]]; then
 	TARGET_PROFILE="N1,Vplus,Beikeyun,L1Pro,S9xxx"
 fi
-CanKu="${GITURL##*com/Author/}"
+CanKu="${GITURL##*com/${Author}/}"
 echo
 echo " 编译源码: ${COMP2}"
 echo " 源码链接: ${REPO_URL}"
