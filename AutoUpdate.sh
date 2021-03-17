@@ -16,10 +16,11 @@ Install_Pkg() {
 		if [[ "${Force_Update}" == "1" ]] || [[ "${AutoUpdate_Mode}" == "1" ]];then
 			Choose="Y"
 		else
-			TIME && read -p "未安装[${PKG_NAME}],是否执行安装?[Y/n]:" Choose
+			TIME && echo "未安装[${PKG_NAME}],执行安装[${PKG_NAME}]"
+			Choose="Y"
 		fi
 		if [[ "${Choose}" == Y ]] || [[ "${Choose}" == y ]];then
-			TIME && echo -e "开始安装[${PKG_NAME}],请耐心等待...\n"
+			TIME && echo -e "开始下载[${PKG_NAME}],请耐心等待...\n"
 			opkg update > /dev/null 2>&1
 			opkg install ${PKG_NAME}
 			if [[ $? -ne 0 ]];then
@@ -287,11 +288,10 @@ fi
 TIME && echo -e "一切准备就绪,5秒后开始更新固件...\n"
 sleep 5
 TIME && echo -e "正在更新固件,请耐心等候..."
-if [[ $? -eq 0 ]];then
-	TIME && echo "固件安装成功，一分钟后请尝试重新登录OpenWRT!"
-	exit
-else	
+sysupgrade ${Upgrade_Options} ${Firmware}
+sleep 1
+if [[ $? -ne 0 ]];then
 	TIME && echo "固件刷写失败,请尝试不保留配置[-n]或手动下载固件!"
 	exit
 fi
-sysupgrade ${Upgrade_Options} ${Firmware}
+
