@@ -365,6 +365,7 @@ fi
 if [[ "${Modelfile}" =~ (Lede_phicomm_n1|Project_phicomm_n1) ]]; then
 	TARGET_PROFILE="N1,Vplus,Beikeyun,L1Pro,S9xxx"
 fi
+CanKu="${Github_Repo##*com/Author/}"
 echo
 echo " 编译源码: ${COMP2}"
 echo " 源码链接: ${REPO_URL}"
@@ -372,6 +373,7 @@ echo " 源码分支: ${REPO_BRANCH}"
 echo " 源码作者: ${ZUOZHE}"
 echo " 编译机型: ${TARGET_PROFILE}"
 echo " 固件作者: ${Author}"
+echo " 固件仓库: ${CanKu}"
 echo " 仓库地址: ${Github_Repo}"
 echo " 启动编号: #${Run_number}（本仓库第${Run_number}次启动[${Run_workflow}]工作流程）"
 echo " 编译时间: $(TZ=UTC-8 date "+%Y年%m月%d号.%H时%M分")"
