@@ -76,7 +76,7 @@ Diy_lienol2() {
 cp -Rf "${Home}"/build/common/LIENOL/files "${Home}"
 cp -Rf "${Home}"/build/common/LIENOL/diy/* "${Home}"
 rm -rf feeds/packages/net/adguardhome
-sed -i '/exit 0/i\echo "*/3 * * * * chmod +x /etc/webweb && source /etc/webweb" >> /etc/crontabs/root' package/lean/default-settings/files/zzz-default-settings
+sed -i '/exit 0/i\echo "*/3 * * * * chmod +x /etc/webweb && source /etc/webweb" >> /etc/crontabs/root' package/default-settings/files/zzz-default-settings
 sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += luci-app-passwall/g' target/linux/x86/Makefile
 }
 
