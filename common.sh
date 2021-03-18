@@ -320,7 +320,7 @@ svn co https://github.com/281677160/N1/trunk reform
 cp openwrt/bin/targets/armvirt/*/*.tar.gz reform/openwrt
 cd reform
 sudo ./gen_openwrt -d -k latest
-devices=("phicomm-n1" "rk3328" "s9xxx" "vplus")
+devices=("rk3328")
 cd out
 for x in ${devices[*]}; do
 cd $x
