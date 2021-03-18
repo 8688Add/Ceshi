@@ -3,7 +3,7 @@
 # AutoBuild Module by Hyy2001
 # AutoUpdate for Openwrt
 
-Version=V5.2
+Version=V5.3
 
 TIME() {
 	echo -ne "\n[$(date "+%H:%M:%S")] "
@@ -38,6 +38,8 @@ Install_Pkg() {
 }
 
 List_Info() {
+	echo "固件作者:	${Author}"
+	echo "编译仓库:	${Cangku}"
 	echo -e "\n/overlay 可用:	${Overlay_Available}"
 	echo "/tmp 可用:	${TMP_Available}M"
 	echo "固件下载位置:	/tmp/Downloads"
@@ -48,7 +50,6 @@ List_Info() {
 	echo "Github 地址:	${Github}"
 	echo "解析 API 地址:	${Github_Tags}"
 	echo "固件下载地址:	${Github_Download}"
-	echo "作者/仓库:	${Author}"
 	if [[ ${DEFAULT_Device} == "x86-64" ]];then
 		echo "EFI 引导: 	${EFI_Boot}"
 		echo "固件压缩:	${Compressed_x86}"
@@ -115,10 +116,12 @@ x86-64)
 esac
 CURRENT_Ver="${CURRENT_Version}${BOOT_Type}"
 Github_Download="${Github}/releases/download/update_Firmware"
-Author="${Github##*com/}"
-Github_Tags="https://api.github.com/repos/${Author}/releases/tags/update_Firmware"
+Apidz="${Github##*com/}"
+Author="${Apidz%/*}"
+Cangku="${Github##*${Author}/}"
+Github_Tags="https://api.github.com/repos/${Apidz}/releases/tags/update_Firmware"
 cd /etc
-clear && echo "Openwrt-AutoUpdate Script ${Version}"
+clear && echo "插件版本:	${Version}"
 if [[ -z "${Input_Option}" ]];then
 	Upgrade_Options="-q" && TIME && echo "执行: 保留配置更新固件[静默模式]"
 else
@@ -211,7 +214,7 @@ fi
 Firmware_Info="$(echo ${GET_Firmware} | egrep -o "${Firmware_COMP1}-${Firmware_COMP2}-${DEFAULT_Device}-[a-zA-Z0-9_-]+.*?[0-9]+")"
 Firmware="${GET_Firmware}"
 Firmware_Detail="${Firmware_Info}${Detail_SFX}"
-echo -e "\n固件作者: ${Author%/*}"
+echo -e "\n固件作者: ${Author}"
 echo "设备名称: ${CURRENT_Device}"
 echo "固件格式: ${Firmware_GESHI}"
 echo -e "\n当前固件版本: ${CURRENT_Ver}"
@@ -253,10 +256,10 @@ if [[ ! "$?" == 0 ]];then
 	exit
 fi
 TIME && echo "固件下载成功!"
-TIME && echo "正在获取云端固件MD5,请耐心等待..."
+TIME && echo "正在下载云端的MD5和SHA256,请耐心等待..."
 wget -q ${Github_Download}/${Firmware_Detail} -O ${Firmware_Detail}
 if [[ ! "$?" == 0 ]];then
-	TIME && echo "MD5 获取失败,请检查网络后重试!"
+	TIME && echo "MD5和SHA256 下载失败,请检查网络后重试!"
 	exit
 fi
 GET_MD5=$(awk -F '[ :]' '/MD5/ {print $2;exit}' ${Firmware_Detail})
@@ -264,14 +267,24 @@ CURRENT_MD5=$(md5sum ${Firmware} | cut -d ' ' -f1)
 echo -e "\n本地固件MD5:${CURRENT_MD5}"
 echo "云端固件MD5:${GET_MD5}"
 if [[ -z "${GET_MD5}" ]] || [[ -z "${CURRENT_MD5}" ]];then
-	TIME && echo -e "MD5 获取失败!"
+	TIME && echo "MD5 获取失败!"
 	exit
 fi
 if [[ ! "${GET_MD5}" == "${CURRENT_MD5}" ]];then
-	TIME && echo -e "MD5 对比失败,请检查网络后重试!"
+	TIME && echo "MD5 对比失败,请检查网络后重试!"
 	exit
 else
-	TIME && echo -e "MD5 对比成功!"
+	TIME && echo "MD5 对比成功!"
+fi
+GET_SHA256=$(awk -F '[ :]' '/SHA256/ {print $2;exit}' ${Firmware_Detail})
+CURRENT_SHA256=$(sha256sum ${Firmware} | cut -d ' ' -f1)
+echo -e "\n本地固件SHA256:${CURRENT_SHA256}"
+echo "云端固件SHA256:${GET_SHA256}"
+if [[ "${GET_SHA256}" == "${CURRENT_SHA256}" ]];then
+	TIME && echo "SHA256 对比成功!"
+else
+	TIME && echo "SHA256 对比失败!"
+	exit
 fi
 if [[ ${Compressed_x86} == 1 ]];then
 	TIME && echo "检测到固件为 [.gz] 压缩格式,开始解压固件..."
@@ -285,13 +298,12 @@ if [[ ${Compressed_x86} == 1 ]];then
 		exit
 	fi
 fi
-TIME && echo -e "一切准备就绪,5秒后开始更新固件...\n"
+TIME && echo -e "一切准备就绪,5秒后开始更新固件..."
 sleep 5
-TIME && echo -e "正在更新固件,请耐心等候..."
+TIME && echo "正在更新固件,请耐心等候..."
 sysupgrade ${Upgrade_Options} ${Firmware}
 sleep 1
 if [[ $? -ne 0 ]];then
 	TIME && echo "固件刷写失败,请尝试不保留配置[-n]或手动下载固件!"
 	exit
 fi
-
