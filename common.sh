@@ -291,8 +291,8 @@ case "${REPO_URL}" in
 ;;
 esac
 if [[ "${TARGET_ADG}" == "x86-64" ]]; then
-	mkdir -p ${Home}/files/tmp
-	wget -P ${Home}/files/tmp https://downloads.openwrt.org/snapshots/packages/x86_64/packages/gzip_1.10-3_x86_64.ipk
+	mkdir -p ${Home}/files/gzip
+	wget -P ${Home}/files/gzip https://downloads.openwrt.org/snapshots/packages/x86_64/packages/gzip_1.10-3_x86_64.ipk
 fi
 rm -rf {LICENSE,README,README.md,CONTRIBUTED.md,README_EN.md}
 rm -rf ./*/{LICENSE,README,README.md}
