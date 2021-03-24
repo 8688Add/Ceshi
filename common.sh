@@ -304,32 +304,17 @@ rm -rf ./*/*/*/{LICENSE,README,README.md}
 Diy_n1() {
 NEIHE="$(awk 'NR==1' ${Home}/N1NEIHE)"
 git clone --depth 1 https://github.com/ophub/amlogic-s9xxx-openwrt.git
-cd amlogic-s9xxx-openwrt
-mkdir -p openwrt-armvirt
-cp -f ../openwrt/bin/targets/armvirt/*/*.tar.gz openwrt-armvirt/ && sync
+cd amlogic-s9xxx-openwrt/
+[ -d openwrt-armvirt ] || mkdir -p openwrt-armvirt
+cp -f ../openwrt/bin/targets/*/*/*.tar.gz openwrt-armvirt/ && sync
+sudo rm -rf ../openwrt && sync
+sudo rm -rf /workdir && sync
 sudo chmod +x make
-sudo ./make -d ${NEIHE}
+sudo ./make -d -b s905x3_s905x2_s905x_s905d_s922x_s912 -k 5.10.23.TF_5.4.105_5.4.77_5.4.50
 cd out/ && sudo gzip *.img
-mv -f *.img.gz ../../openwrt/bin/targets/armvirt/* && sync
-cd ../../
-
-
-svn co https://github.com/281677160/N1/trunk reform
-cp openwrt/bin/targets/armvirt/*/*.tar.gz reform/openwrt
-cd reform
-sudo ./gen_openwrt -d -k latest
-devices=("rk3328")
-cd out
-for x in ${devices[*]}; do
-cd $x
-filename=$(ls | awk -F '.img' '{print $1}')
-gzip *.img
-cd ../
-echo "firmware_$x=$filename"
-done
-mv -f ./*/*.img.gz ../../openwrt/bin/targets/armvirt/*
-rm -rf ../../{reform,amlogic-s9xxx-openwrt}
-cd ../../openwrt
+cp -f ../openwrt-armvirt/*.tar.gz . && sync
+echo "FILEPATH=$PWD" >> $GITHUB_ENV
+echo "::set-output name=status::success"
 }
 
 ################################################################################################################
