@@ -38,9 +38,9 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/danshui/luci-app
 git clone https://github.com/jerrykuku/luci-app-vssr package/danshui/luci-app-vssr
 git clone https://github.com/vernesong/OpenClash package/danshui/luci-app-openclash
 git clone https://github.com/frainzy1477/luci-app-clash package/danshui/luci-app-clash
-git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app-bypass
-find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
-find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
+# git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app-bypass
+# find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
+# find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 }
 ################################################################################################################
 # LEDE源码通用diy2.sh文件
@@ -65,9 +65,9 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/danshui/luci-app
 git clone https://github.com/jerrykuku/luci-app-vssr package/danshui/luci-app-vssr
 git clone https://github.com/vernesong/OpenClash package/danshui/luci-app-openclash
 git clone https://github.com/frainzy1477/luci-app-clash package/danshui/luci-app-clash
-git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app-bypass
-find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
-find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
+# git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app-bypass
+# find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
+# find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 }
 ################################################################################################################
 # LIENOL源码通用diy2.sh文件
@@ -96,7 +96,7 @@ rm -rf package/lean/luci-theme-argon
 #if [ -n "$(ls -A "${PATH1}/patches/1806-modify_for_r2s.patch" 2>/dev/null)" ]; then
 #curl -fsSL https://raw.githubusercontent.com/1715173329/nanopi-r2s-openwrt/master/patches/1806-modify_for_r2s.patch > "${PATH1}/patches"/1806-modify_for_r2s.patch
 #fi
-git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app-bypass
+# git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app-bypass
 }
 
 ################################################################################################################
