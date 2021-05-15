@@ -303,7 +303,7 @@ rm -rf ./*/*/*/{LICENSE,README,README.md}
 
 Diy_n1() {
 NEIHE="$(awk 'NR==1' ${Home}/N1NEIHE)"
-git clone --depth 1 https://github.com/ophub/amlogic-s9xxx-openwrt.git
+git clone --depth 1 https://github.com/1980Add/amlogic-s9xxx-openwrt.git
 cd amlogic-s9xxx-openwrt
 mkdir -p openwrt-armvirt
 cp -f ../openwrt/bin/targets/armvirt/*/*.tar.gz openwrt-armvirt/ && sync
